@@ -3,7 +3,7 @@ from discord.ext import commands
 import discord
 import time
 
-TOKEN ='xxxx'
+TOKEN ='MTE2NTQ4MzQ5MDc4NDA1NTM0Ng.GK8tle.9g90eaCQ1EPiRXswIMrb6VMG4qBT02Wm-OR9kA'
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -25,6 +25,9 @@ async def on_message(message):
         return
 
     if msg == "-Feyn" and flag == 0:
+        await message.channel.send("WELCOME to Feyn-Me! :books: ")
+        await message.channel.send("To Join The session type: -join")
+        await message.channel.send("To Start The session type: -start -t (Number of Minutes you want to study) (your topic)")
         await message.channel.send("Join the Feyn-Me Session!")
         flag = 1
     
@@ -36,21 +39,24 @@ async def on_message(message):
 
     start = msg.split()
     print(start)
-    if(len(start) >= 3):
+    if(len(start) >= 4):
         if(flag == 1 and start[0] == "-start" and start[1] == "-t"):
             start.remove("-start")
             start.remove("-t")
+            x = start[0]
+            start.remove(start[0])
+
             await message.channel.send("Feyn-me Session has Started!")
             for i in range (0,len(clients)):
                 await message.channel.send(clients[i])
             await message.channel.send("The Topic is: " + ' '.join(start))
             
-            total_seconds =  0 * 60 + 60
+            total_seconds =  60*x
         while total_seconds > 0:
             timer = datetime.timedelta(seconds = total_seconds)
             ##print(timer, end="\r")
             time.sleep(1)
-            if(total_seconds % 10 == 0):
+            if(total_seconds % 20 == 0):
                 await message.channel.send("Current Time Left: " + str(timer))
             total_seconds -= 1
 
@@ -59,12 +65,12 @@ async def on_message(message):
         for i in range(0,len(clients)):
             await message.channel.send(clients[i] + " Its your Turn to Present")
 
-            total_seconds =  0 * 60 + 30
+            total_seconds =  30
             while total_seconds > 0:
                 timer = datetime.timedelta(seconds = total_seconds)
             ##print(timer, end="\r")
                 time.sleep(1)
-                if(total_seconds % 10 == 0):
+                if(total_seconds % 20 == 0):
                     await message.channel.send("Current Time Left to type: " + str(timer))
                 total_seconds -= 1
             await message.channel.send("Time is up")
@@ -73,6 +79,7 @@ async def on_message(message):
             await message.channel.send("Vote ✅ for yes and ❌ for no")
             time.sleep(20)
 
+        await message.channel.send("If ✅ less than: " + len(clients)/2 + "then Restart session")
         await message.channel.send("Session is Done")
 
 
