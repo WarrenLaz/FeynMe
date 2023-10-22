@@ -3,7 +3,7 @@ from discord.ext import commands
 import discord
 import time
 
-TOKEN ='MTE2NTQ4MzQ5MDc4NDA1NTM0Ng.GK8tle.9g90eaCQ1EPiRXswIMrb6VMG4qBT02Wm-OR9kA'
+TOKEN ='HIDDEN FOR SECURITY'
 
 intents = discord.Intents.default()
 intents.message_content = True
