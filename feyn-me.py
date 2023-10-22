@@ -43,13 +43,14 @@ async def on_message(message):
         if(flag == 1 and start[0] == "-start" and start[1] == "-t"):
             start.remove("-start")
             start.remove("-t")
-            x = start[0]
+            x = int(start[0])
             start.remove(start[0])
 
             await message.channel.send("Feyn-me Session has Started!")
             for i in range (0,len(clients)):
                 await message.channel.send(clients[i])
             await message.channel.send("The Topic is: " + ' '.join(start))
+            await message.channel.send("You have " + str(x) + " minutes :alarm_clock: to learn")
             
             total_seconds =  60*x
         while total_seconds > 0:
@@ -60,7 +61,7 @@ async def on_message(message):
                 await message.channel.send("Current Time Left: " + str(timer))
             total_seconds -= 1
 
-        await message.channel.send("TIME IS UP")
+        await message.channel.send(":bangbang: TIME IS UP :bangbang: ")
 
         for i in range(0,len(clients)):
             await message.channel.send(clients[i] + " Its your Turn to Present")
@@ -73,13 +74,13 @@ async def on_message(message):
                 if(total_seconds % 20 == 0):
                     await message.channel.send("Current Time Left to type: " + str(timer))
                 total_seconds -= 1
-            await message.channel.send("Time is up")
+            await message.channel.send(":bangbang: TIME IS UP :bangbang: ")
             await message.channel.send("20 second voting time")
             await message.channel.send("Do you understand: " + ' '.join(start) + " through, " + clients[i])
             await message.channel.send("Vote ✅ for yes and ❌ for no")
             time.sleep(20)
 
-        await message.channel.send("If ✅ less than: " + len(clients)/2 + "then Restart session")
+        await message.channel.send("If ✅ less than: " + str(int(len(clients)/2)) + " then Restart session")
         await message.channel.send("Session is Done")
 
 
