@@ -3,7 +3,7 @@ from discord.ext import commands
 import discord
 import time
 
-TOKEN ='MTE2NTQ4MzQ5MDc4NDA1NTM0Ng.Gvq9mU.lr91eTOG3HX-SRyPmROxUJzGlQxs0h3D4I3pws'
+TOKEN =''
 
 intents = discord.Intents.default()
 intents.message_content = True
